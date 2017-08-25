@@ -31,14 +31,12 @@ public class Phone {
 
     private static void combos(String prefix, char c, String remaining, ArrayList<String> collected) {
         char[] letters = LETTERS[Character.getNumericValue(c)];
-        if (remaining.length() == 0) {
-            for (char l : letters) {
-                collected.add(prefix + l);
-            }
-            return;
-        }
         for (char l : letters) {
-            combos(prefix + l, remaining.charAt(0), remaining.substring(1), collected);
+            if (remaining.length() == 0) {
+                collected.add(prefix + l);
+            } else {
+                combos(prefix + l, remaining.charAt(0), remaining.substring(1), collected);
+            }
         }
     }
 
