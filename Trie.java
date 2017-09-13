@@ -101,7 +101,7 @@ public class Trie<Value> {
     }
 
     // LIST keys that start with a given prefix
-    public Iterable<String> keysThatStartWith(String prefix) {
+    public Iterable<String> keys(String prefix) {
         Stack<String> collected = new Stack<>();
 
         // find the root node for the subtrie for the given prefix
@@ -114,9 +114,9 @@ public class Trie<Value> {
     // MAIN
     public static void main(String[] args) {
         String[] words = {"she", "sells", "sea", "shells", "by", "the", "sea"};
-        Trie<Integer> trie = new Trie<>();
+        Trie<Boolean> trie = new Trie<>();
         for (String w : words) {
-            trie.put(w, 1);
+            trie.put(w, true);
         }
 
         System.out.println("--- has key 'sea':");
@@ -125,21 +125,24 @@ public class Trie<Value> {
         System.out.println("--- has key 'shore':");
         System.out.println(trie.get("shore") != null);
 
+        System.out.println("--- number of keys in the trie:");
+        System.out.println(trie.size());
+
         System.out.println("--- keys in the trie:");
         for (String key : trie.keys()) {
             System.out.println(key);
         }
 
         System.out.println("--- keys that start with 'sh':");
-        for (String key : trie.keysThatStartWith("sh")) {
+        for (String key : trie.keys("sh")) {
             System.out.println(key);
         }
 
         System.out.println("--- adding 'shore'");
-        trie.put("shore", 1);
+        trie.put("shore", true);
 
         System.out.println("--- keys that start with 'sh':");
-        for (String key : trie.keysThatStartWith("sh")) {
+        for (String key : trie.keys("sh")) {
             System.out.println(key);
         }
     }
